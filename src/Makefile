@@ -444,8 +444,8 @@ ifeq ($(COMP),clang)
 endif
 
 ifeq ($(KERNEL),Darwin)
-	CXXFLAGS += -arch $(arch) -mmacosx-version-min=10.14
-	LDFLAGS += -arch $(arch) -mmacosx-version-min=10.14
+	# CXXFLAGS += -arch $(arch) -mmacosx-version-min=10.14
+	# LDFLAGS += -arch $(arch) -mmacosx-version-min=10.14
 	XCRUN = xcrun
 endif
 
@@ -539,7 +539,7 @@ ifeq ($(optimize),yes)
 	ifneq ($(COMP),emscripten)
 		ifeq ($(comp),$(filter $(comp),gcc clang icc))
 			ifeq ($(KERNEL),Darwin)
-				CXXFLAGS += -mdynamic-no-pic
+				# CXXFLAGS += -mdynamic-no-pic
 			endif
 		endif
 	endif
@@ -547,7 +547,7 @@ ifeq ($(optimize),yes)
 	ifeq ($(comp),clang)
 		clangmajorversion = $(shell $(CXX) -dumpversion 2>/dev/null | cut -f1 -d.)
 		ifeq ($(shell expr $(clangmajorversion) \< 16),1)
-			CXXFLAGS += -fexperimental-new-pass-manager
+			# CXXFLAGS += -fexperimental-new-pass-manager
 		endif
 	endif
 endif

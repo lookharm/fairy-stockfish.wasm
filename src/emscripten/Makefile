@@ -16,7 +16,6 @@ EM_CXXFLAGS +=
 EM_LDFLAGS += \
 	--pre-js emscripten/preamble.js \
 	-s MODULARIZE=1 -s EXPORT_NAME="Stockfish" -s ENVIRONMENT=web,worker,node \
-	-s STRICT=1 \
 	-s ASYNCIFY=1 -s 'ASYNCIFY_IMPORTS=["emscripten_utils_getline_impl"]' \
 	-s USE_PTHREADS=1 \
 	-s PROXY_TO_PTHREAD=1 \
@@ -48,7 +47,7 @@ else
 endif
 
 EM_COMMIT = $(shell git rev-parse --short HEAD)
-EM_UPSTREAM = $(shell git rev-parse --short $$(git merge-base HEAD upstream/master))
+EM_UPSTREAM = $(shell git rev-parse --short $$(git merge-base HEAD upstream/nnue))
 EM_EMSCRIPTEN = $(shell emsdk list | grep INSTALLED | head -n 1 | awk '{ print $$1 }')
 
 EXTRACXXFLAGS += \
